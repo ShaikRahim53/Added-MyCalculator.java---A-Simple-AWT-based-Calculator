@@ -2,10 +2,10 @@ import java.awt.*;
 import java.awt.event.*;
 class MyCalculator extends Frame implements ActionListener
 {
-Frame fr=new Frame("MyCalculator");
-TextField tf=new TextField();
-int num1,num2,result;
-char opt;
+Frame frame = new Frame("MyCalculator");
+TextField textField =new TextField();
+int firstNumber,secondNumber,result;
+char operator;
 Button b1=new Button("1");
 Button b2=new Button("2");
 Button b3=new Button("3");
@@ -22,12 +22,12 @@ Button bs=new Button("-");
 Button bm=new Button("*");
 Button bd=new Button("/");
 Button bq=new Button("=");
-Panel pn=new Panel();
+Panel panel = new Panel();
 MyCalculator()
 {
-fr.add(tf,"North");
-fr.add(pn,"Center");
-addWindowListener(new WindowAdapter(){
+frame.add(textField,"North");
+frame.add(panel ,"Center");
+frame.addWindowListener(new WindowAdapter(){
    public void windowClosing(WindowEvent we) {
 System.exit(0);
    }
@@ -48,106 +48,102 @@ bs.addActionListener(this);
 bm.addActionListener(this);
 bd.addActionListener(this);
 bq.addActionListener(this);
-pn.add(b7);
-pn.add(b8);
-pn.add(b9);
-pn.add(bp);
-pn.add(b6);
-pn.add(b5);
-pn.add(b4);
-pn.add(bs);
-pn.add(b1);
-pn.add(b2);
-pn.add(b3);
-pn.add(bm);
-pn.add(bc);
-pn.add(b0);
-pn.add(bq);
-pn.add(bd);
-pn.setLayout(new GridLayout(4,4));
-fr.setVisible(true);
-fr.setSize(350,450);
+panel.add(b7);
+panel.add(b8);
+panel.add(b9);
+panel.add(bp);
+panel.add(b6);
+panel.add(b5);
+panel.add(b4);
+panel.add(bs);
+panel.add(b1);
+panel.add(b2);
+panel.add(b3);
+panel.add(bm);
+panel.add(bc);
+panel.add(b0);
+panel.add(bq);
+panel.add(bd);
+panel.setLayout(new GridLayout(4,4));
+frame.setVisible(true);
+frame.setSize(350,450);
 }
-public void windowClosing(WindowEvent e) 
-{
-           dispose();
-	}
 public void actionPerformed(ActionEvent ae)
 {
 String str=ae.getActionCommand();
 if(str.equals("+"))
 {
-opt=str.charAt(0);
-num1=Integer.parseInt(tf.getText());
-System.out.println(num1);
-tf.setText("");
+operator = str.charAt(0);
+firstNumber = Integer.parseInt(textField.getText());
+System.out.println(firstNumber) ;
+textField.setText("");
 }
 else if(str.equals("-"))
 {
-opt=str.charAt(0);
-num1=Integer.parseInt(tf.getText());
-System.out.println(num1);
-tf.setText("");
+operator = str.charAt(0);
+firstNumber = Integer.parseInt(textField.getText());
+System.out.println(firstNumber) ;
+textField.setText("");
 }
 else if(str.equals("*"))
 {
-opt=str.charAt(0);
-num1=Integer.parseInt(tf.getText());
-System.out.println(num1);
-tf.setText("");
+operator = str.charAt(0);
+firstNumber = Integer.parseInt(textField.getText());
+System.out.println(firstNumber) ;
+textField.setText("");
 }
 else if(str.equals("/"))
 {
-opt=str.charAt(0);
-num1=Integer.parseInt(tf.getText());
-System.out.println(num1);
-tf.setText("");
+operator = str.charAt(0);
+firstNumber = Integer.parseInt(textField.getText());
+System.out.println(firstNumber) ;
+textField.setText("");
 }
 else if(str.equals("="))
 {
 String exp="";
-num2=Integer.parseInt(tf.getText());
-System.out.println(num2);
-switch(opt)
+secondNumber = Integer.parseInt(textField.getText());
+System.out.println(secondNumber) ;
+switch(operator ) 
 {
-case '+': result=num1+num2;
-		tf.setText(result+"");
+case '+': result = firstNumber + secondNumber; 
+		textField.setText(result+"");
           break;
-case '-': result=num1-num2;
-	tf.setText(result+"");
+case '-': result = firstNumber - secondNumber; 
+	textField.setText(result+"");
           break;
-case '*': result=num1*num2;
-tf.setText(result+"");
+case '*': result = firstNumber * secondNumber; 
+textField.setText(result+"");
           break;
 case '/': 
  try
 	{
-	  result = num1 / num2;
-tf.setText(result+"");
+	  result = firstNumber/secondNumber ; 
+textField.setText(result+"");
                     }
 	        catch(ArithmeticException aex)
                                     {
 			result=0;
 			exp=exp.concat(aex.getMessage());
-			tf.setText(result+exp);
+			textField.setText(result+exp);
 		       	       }
 	        catch(NumberFormatException nfe)
                                     {
 		result=0;
 		exp=exp.concat(nfe.getMessage());
-tf.setText(result+exp);
+textField.setText(result+exp);
                                    }
           break;
 }
 }
 else if(str.equals("C"))
 {
-num1=num2=result=0;
-tf.setText("");
+firstNumber = secondNumber = result = 0;
+textField.setText("");
 }
 else
 {
-tf.setText(tf.getText()+str);
+textField.setText(textField.getText()+str);
 }
 }
 public static void main(String arg[])
